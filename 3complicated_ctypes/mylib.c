@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include "mylib.h"
 
-/* set value as -1 and null as next pointer */
+/* set value as -1 and next pointer as null */
 void init_node(node_t* node) {
     if (node == NULL) return;
-    node->value = -1;
+    node->value = 0;
     node->next = NULL;
 }
 
@@ -18,13 +18,13 @@ node_t* make_list(int num) {
 
     head = (node_t*) malloc(sizeof(node_t));
     init_node(head);
-    head->value = 0;
+    head->value = 1;
 
     curr = head;
     for (cnt = 1; cnt < num; ++cnt) {
         curr->next = (node_t*) malloc(sizeof(node_t));
         init_node(curr->next);
-        curr->next->value = cnt;
+        curr->next->value = cnt + 1;
         curr = curr->next;
     }
 
