@@ -11,5 +11,5 @@ print '"*.ext" %s "name.ext"' % \
         ('matches' if libapr.apr_fnmatch('*.ext', 'name.ext', 0) == APR_SUCCESS
                    else 'does not match')
 print '"*.txt" %s "name.ext"' % \
-        ('matches' if libapr.apr_fnmatch('*.txt', 'name.ext', 2) == APR_SUCCESS
+        ('matches' if libapr.apr_fnmatch('*.txt', 'name.ext', 0) == APR_SUCCESS
                    else 'does not match')

@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "mylib.h"
 
-/* set value as -1 and next pointer as null */
+/* set value as 0 and next pointer as NULL */
 void init_node(node_t* node) {
     if (node == NULL) return;
     node->value = 0;

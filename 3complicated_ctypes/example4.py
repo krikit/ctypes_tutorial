@@ -1,6 +1,5 @@
 import ctypes
 from ctypes import Structure, POINTER
-from ctypes.util import find_library
 
 class node_t(Structure):
     pass

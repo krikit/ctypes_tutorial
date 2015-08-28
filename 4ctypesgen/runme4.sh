@@ -12,7 +12,7 @@ fi
 ln -sf ../3complicated_ctypes/mylib.h
 ln -sf ../3complicated_ctypes/mylib.c
 gcc -fPIC -shared -o libmylib.so mylib.c
-ctypesgen.py -L. -lmylib -o mylib.py mylib.h > /dev/null 2>&1
+ctypesgen.py -I. -L. -lmylib -o mylib.py mylib.h > /dev/null 2>&1
 
 # examples
 echo "==== example5 ===="
