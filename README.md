@@ -65,7 +65,7 @@ initcos_module(void)
      (void) Py_InitModule("cos_module", CosMethods);
 }
 ```
-_위 코드는 C의 math 라이브러리 libm.so에 있는 cos() 함수를 C Extension을 통해 호출하는 예제로  [이곳](https://scipy-lectures.github.io/advanced/interfacing_with_c/interfacing_with_c.html)에서 잠시 빌려왔습니다._
+_위 코드는 C의 math 라이브러리 libm.so에 있는 `cos()` 함수를 C Extension을 통해 호출하는 예제로,  [이곳](https://scipy-lectures.github.io/advanced/interfacing_with_c/interfacing_with_c.html)에서 잠시 빌려왔습니다._
 
 * 무엇보다 이렇게 만든 코드는 Python ___버전 의존성___을 갖게 되어 Python 인터프리터 버전이 바뀌면 동작하지 않습니다.
 
@@ -79,7 +79,7 @@ import ctypes
 from ctypes.util import find_library
 
 libm = ctypes.cdll.LoadLibrary(find_library('m'))    # libm.so 혹은 맥의 경우 libm.dylib을 찾아 로드합니다.
-libm.cos.argtypes = [ctypes.c_double,]               # 매개변수의 타입을 리스트로 차례로 지정해 줍니다.
+libm.cos.argtypes = [ctypes.c_double,]               # 인자의 타입을 리스트로 차례로 지정해 줍니다.
 libm.cos.restype = ctypes.c_double                   # 리턴 타입을 지정해 줍니다.
 
 print 'cos(1)  =', libm.cos(1.0)              # 출력: 0.540302305868
@@ -126,7 +126,7 @@ void del_list(node_t* head);     /* delete entire nodes in list */
 
 #endif    /* __MYLIB_H__ */
 ```
-* 이를 구현한 소스 코드(mylib.c)와 빌드한 shared 라이브러리(libmylib.so)가 있다고 하면,
+* 이를 구현한 소스 코드(mylib.c)와 빌드한 동적 라이브러리(libmylib.so)가 있다고 하면,
 ```C
 #include <stdlib.h>
 #include "mylib.h"
@@ -168,7 +168,7 @@ void del_list(node_t* head) {
     free(head);
 }
 ```
-* 아래와 같이 Python 코드에서 ctypes를 이용하여 사용할 수 있습니다.
+* 아래와 같이 Python 코드에서 ctypes를 이용하여 불러 쓸 수 있습니다.
 ```python
 import ctypes
 from ctypes import Structure, POINTER
@@ -204,16 +204,16 @@ mylib.del_list(head)                           # 생성한 리스트 전체 메�
 ctypesgen
 ---------
 * ctypesgen을 이용하면 손쉽게 이러한 ctypes를 이용해 명세해 줘야할 API를 ___자동___으로 모듈로 생성하는 것이 가능합니다.
-* ctypesgen은 [PyPI](https://pypi.python.org/pypi/ctypesgen)에 등록되어 있으므로 pip를 통해 설치하거나, [GitHub](https://github.com/davidjamesca/ctypesgen) 직접 내려받아 설치할 수 있습니다.
-* 아래 명령은 ctypesgen을 설치한 후 `mylib`이라는 Python 모듈을 자동으로 생성하는 명령어입니다.
+* ctypesgen은 [PyPI](https://pypi.python.org/pypi/ctypesgen)에 등록되어 있으므로 pip를 통해 설치하거나, [GitHub](https://github.com/davidjamesca/ctypesgen)에서 직접 내려받아 설치할 수 있습니다.
+* 아래 명령은 ctypesgen을 설치한 후 mylib이라는 Python 모듈을 자동으로 생성하는 명령어입니다.
 ```
 ctypesgen.py -I. -L. -lmylib -o mylib.py mylib.h
 ```
-* -I, -L, -l 옵션은 gcc에서 사용하는 옵션과 동일하고, -o 옵션을 통해 출력할 파일의 이름을, 입력으로는 API 헤더를 지정해 주면 됩니다.
+* -I, -L, -l 옵션은 gcc에서 사용하는 그것과 동일하고, -o 옵션을 통해 출력할 파일의 이름을, 입력으로는 API 헤더를 지정해 주면 됩니다.
 * 이렇게 하면 아래와 같이 간단히 모듈을 import하여 사용할 수 있습니다.
 ```python
 import ctypes
-import mylib
+import mylib    # 장황한 명세 부분이 모듈의 import 하나로 간략해 졌습니다.
 
 node = mylib.node_t()
 node.value = 100
