@@ -17,7 +17,7 @@ ctypes 소개
 * 수많은 ___라이브러리___들이 [Standard Library](https://docs.python.org/2/library/)로 제공되고, [Python Package Index](https://pypi.python.org/pypi)를 통해 더 많은 라이브러리들을 가져다 활용할 수 있습니다.
 * 그리고 Python으로 포팅되지 않은 무수히 많은 ___C 라이브러리___들이 또한 존재합니다.
 * 때로는 ___성능___을 이유로 C 언어를 사용하게 되기도 합니다. 많이들 사용하는 [NumPy](http://www.numpy.org/)도 성능을 위해 코어는 C 언어를 사용합니다.
-* 이렇게 Python으로서는 외래어(?)인 C 언어로 만들어진 함수를 호출하거나 데이터를 주고 받는 것을 ___[Forein Function Interface](https://en.wikipedia.org/wiki/Foreign_function_interface)___라고 합니다.
+* 이렇게 Python으로서는 외래어(?)인 C 언어로 만들어진 함수를 호출하거나 데이터를 주고 받는 것을 ___[Foreign Function Interface](https://en.wikipedia.org/wiki/Foreign_function_interface)___라고 합니다.
 * Python은 이러한 부분에 있어서도 매우 편리한 방법을 제공합니다.
 
 Python C Extension
